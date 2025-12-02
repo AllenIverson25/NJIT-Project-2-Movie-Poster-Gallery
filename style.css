@@ -74,6 +74,7 @@ body {
     line-height: 80px;
     text-align: center;
     width: 80px;
+    border-radius: 50%;
     position: absolute;
     top: 50px;
     right: 25px;
@@ -119,3 +120,22 @@ body {
 }
 
 /* ADD YOUR LIKE AND DISLIKE HOVER/MOUSEOVER CSS CODE HERE */
+.likes {
+    background-color: green;
+    color: white;
+}
+
+.likes:hover {
+    background-color: lightgreen;
+    color: green;
+}
+
+.dislikes {
+    background-color: red;
+    color: white;
+}
+
+.dislikes:hover {
+    background-color: lightcoral;
+    color: red;
+}
