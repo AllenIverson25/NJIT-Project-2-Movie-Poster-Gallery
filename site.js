@@ -34,13 +34,35 @@ const vue_app = Vue.createApp({
             // This holds your movies.json data.
             movies: [],
             /* ADD ADDITIONAL VARIABLES FOR STEP 3 HERE */
-            title: "IMDB + Joseph Friedman's Top 8 Movies",
-            owner: "Joseph Friedman",
-            github: "https://github.com/AllenIverson25/NJIT-Project-2-Movie-Poster-Gallery"
+            title: "IMDB + Your Name's Top 8 Movies",
+            owner: "Your Name",
+            github: "https://github.com/yourusername/your-P3-repo"
       }
     },
       methods: {
             /* ADD FUNCTIONS/METHODS FOR STEP 7 HERE */
+            makeTextDate(dateArray) {
+                  let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                  return months[dateArray[1] - 1] + " " + dateArray[2] + ", " + dateArray[0];
+            },
+            like(index) {
+                  this.movies[index].likes = this.movies[index].likes + 1;
+            },
+            dislike(index) {
+                  this.movies[index].dislikes = this.movies[index].dislikes + 1;
+            },
+            posterClick(index) {
+                  if (this.movies[index].posterindex < this.movies[index].posters.length - 1) {
+                        this.movies[index].posterindex = this.movies[index].posterindex + 1;
+                  } else {
+                        this.movies[index].posterindex = 0;
+                  }
+            },
+            timeText(minutes) {
+                  let hours = Math.floor(minutes / 60);
+                  let mins = minutes % 60;
+                  return hours + "h " + mins + "m";
+            }
       }
 })
 
