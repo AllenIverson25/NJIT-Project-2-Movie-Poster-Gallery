@@ -36,7 +36,7 @@
 	        <div class="col-md-6" v-for="(movie, index) in movies" :key="index">
 	            <div class="thumbnail">
 
-						<img class="poster img-fluid" :src="movie.posters[movie.posterindex]" />
+						<img class="poster img-fluid" :src="movie.posters[movie.posterindex]" @click="posterClick(index)" />
 						<div class="imageInfo">{{ movie.posterindex }}</div>
 
 						<p class="title">{{ movie.title }} ({{ movie.country }})</p>
@@ -46,8 +46,8 @@
 						<p class="websites">Websites: <a :href="movie.imdb"> imdb </a> | <a :href="movie.website">website</a></p>
 
 			            <div class="social">
-			              <p class="likes"><i class="bi bi-hand-thumbs-up" aria-hidden="true"></i> {{ movie.likes }}</p>
-			              <p class="dislikes"><i class="bi bi-hand-thumbs-down"></i> {{ movie.dislikes }}</p>
+			              <p class="likes" @click="like(index)"><i class="bi bi-hand-thumbs-up" aria-hidden="true"></i> {{ movie.likes }}</p>
+			              <p class="dislikes" @click="dislike(index)"><i class="bi bi-hand-thumbs-down"></i> {{ movie.dislikes }}</p>
 			            </div>
 	            </div>
 	        </div>
