@@ -34,7 +34,9 @@ const vue_app = Vue.createApp({
             // This holds your movies.json data.
             movies: [],
             /* ADD ADDITIONAL VARIABLES FOR STEP 3 HERE */
-         
+            title: "IMDB + Joseph Friedman's Top 8 Movies",
+            owner: "Joseph Friedman",
+            github: "https://github.com/AllenIverson25/NJIT-Project-2-Movie-Poster-Gallery"
       }
     },
       methods: {
