@@ -68,5 +68,47 @@
             "likes": 812,
             "dislikes": 101,
             "posterindex": 0
+      },
+      {
+            "title": "The Wolf of Wall Street",
+            "iscore": 8.2,
+            "rating": "R",
+            "runtime": 180,
+            "released": [2013, 12, 25],
+            "country": "USA",
+            "posters": ["img/wolfofwallstreet.jpg", "img/wolfofwallstreet2.jpg"],
+            "imdb": "http://www.imdb.com/title/tt0993846",
+            "website": "https://www.paramount.com/movies/wolf-wall-street",
+            "likes": 0,
+            "dislikes": 0,
+            "posterindex": 0
+      },
+      {
+            "title": "Forrest Gump",
+            "iscore": 8.8,
+            "rating": "PG-13",
+            "runtime": 142,
+            "released": [1994, 7, 6],
+            "country": "USA",
+            "posters": ["img/forrestgump.jpg", "img/forrestgump2.jpg"],
+            "imdb": "http://www.imdb.com/title/tt0109830",
+            "website": "https://www.paramount.com/movies/forrest-gump",
+            "likes": 0,
+            "dislikes": 0,
+            "posterindex": 0
+      },
+      {
+            "title": "Inception",
+            "iscore": 8.8,
+            "rating": "PG-13",
+            "runtime": 148,
+            "released": [2010, 7, 16],
+            "country": "USA",
+            "posters": ["img/inception.jpg", "img/inception2.jpg"],
+            "imdb": "http://www.imdb.com/title/tt1375666",
+            "website": "https://www.warnerbros.com/movies/inception",
+            "likes": 0,
+            "dislikes": 0,
+            "posterindex": 0
       }
 ]
