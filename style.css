@@ -1,89 +1,568 @@
-/* This stylizes the page defaults */
+/* ============================================
+   CINEMATIC MOVIE GALLERY - ADVANCED CSS
+   Inspired by: Shawshank, Godfather, Dark Knight,
+   Inception, Wolf of Wall Street, Forrest Gump
+   Classic Hollywood meets Modern Cinema
+   ============================================ */
+
+/* === ROOT VARIABLES === */
+:root {
+    --gold-accent: #d4af37;
+    --deep-red: #8b0000;
+    --dark-knight-blue: #0a2342;
+    --inception-bronze: #b8860b;
+    --classic-black: #0a0a0a;
+    --film-grain: rgba(255, 255, 255, 0.02);
+    --shadow-deep: rgba(0, 0, 0, 0.9);
+}
+
+/* === PAGE DEFAULTS WITH CINEMATIC BACKGROUND === */
 html,
 body {
     margin: 0;
     padding: 0;
     width: 100%;
-    overflow: auto;
-    background-image: url(img/geometry.jpg);
+    overflow-x: hidden;
+    /* Classic film noir meets modern dark cinema */
+    background: radial-gradient(ellipse at top, #1a1a2e 0%, #0f0f1e 50%, #000000 100%);
+    background-attachment: fixed;
+    position: relative;
+    font-family: 'Georgia', 'Times New Roman', serif;
 }
 
-/* This stylizes the header area */
-.header {
-    padding: 15px;
+/* Film grain texture overlay - gives that classic cinema feel */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23noise)" opacity="0.05"/></svg>');
+    animation: grainMove 8s steps(10) infinite;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
 }
+
+@keyframes grainMove {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -5%); }
+    20% { transform: translate(-10%, 5%); }
+    30% { transform: translate(5%, -10%); }
+    40% { transform: translate(-5%, 15%); }
+    50% { transform: translate(-10%, 5%); }
+    60% { transform: translate(15%, 0); }
+    70% { transform: translate(0, 10%); }
+    80% { transform: translate(-15%, 0); }
+    90% { transform: translate(10%, 5%); }
+}
+
+/* Spotlight effect - like premiere night */
+body::after {
+    content: '';
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, transparent 0%, rgba(212, 175, 55, 0.03) 40%, transparent 70%);
+    animation: spotlightSweep 30s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes spotlightSweep {
+    0%, 100% { transform: translate(0%, 0%) rotate(0deg); }
+    25% { transform: translate(10%, 10%) rotate(90deg); }
+    50% { transform: translate(-10%, 10%) rotate(180deg); }
+    75% { transform: translate(-10%, -10%) rotate(270deg); }
+}
+
+/* === HEADER STYLING - Classic Hollywood Marquee === */
+.header {
+    padding: 30px 15px;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+    border-bottom: 2px solid var(--gold-accent);
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+}
+
 .header h1 {
     display: inline-block;
-    color: white;
-}
-
-/* This stylizes the main page area */
-.main {
-    background-color: #f2f2f2;
-    padding: 40px 0;
-}
-
-/* This stylizes the poster area and poster images */
-.thumbnail {
-    border: 0px;
+    color: var(--gold-accent);
+    font-size: 3.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    /* Classic marquee light bulb effect */
+    text-shadow: 
+        0 0 10px rgba(212, 175, 55, 0.8),
+        0 0 20px rgba(212, 175, 55, 0.6),
+        0 0 30px rgba(212, 175, 55, 0.4),
+        0 0 40px rgba(212, 175, 55, 0.2),
+        2px 2px 4px rgba(0, 0, 0, 0.8);
+    animation: marqueeGlow 3s ease-in-out infinite alternate;
     position: relative;
-    padding: 20px;
-    margin: 20px;
-    border-radius: 0;
-    background-color:#dddddd;
 }
+
+/* Animated underline like film reel */
+.header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--gold-accent) 20%, 
+        var(--gold-accent) 80%, 
+        transparent 100%);
+    animation: filmReelScroll 2s linear infinite;
+}
+
+@keyframes marqueeGlow {
+    0% { 
+        text-shadow: 
+            0 0 10px rgba(212, 175, 55, 0.8),
+            0 0 20px rgba(212, 175, 55, 0.6),
+            0 0 30px rgba(212, 175, 55, 0.4),
+            2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+    100% { 
+        text-shadow: 
+            0 0 20px rgba(212, 175, 55, 1),
+            0 0 30px rgba(212, 175, 55, 0.8),
+            0 0 40px rgba(212, 175, 55, 0.6),
+            0 0 50px rgba(212, 175, 55, 0.4),
+            2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+}
+
+@keyframes filmReelScroll {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 0%; }
+}
+
+/* === MAIN GALLERY AREA === */
+.main {
+    background-color: transparent;
+    padding: 60px 0;
+    position: relative;
+    z-index: 5;
+}
+
+/* === ROW STAGGER ANIMATION === */
+.row {
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === MOVIE CARD - 3D HOLOGRAPHIC POSTER EFFECT === */
+.col-md-6 {
+    /* Stagger animation for each card */
+    animation: cardEntrance 0.8s ease-out backwards;
+}
+
+.col-md-6:nth-child(1) { animation-delay: 0.1s; }
+.col-md-6:nth-child(2) { animation-delay: 0.2s; }
+.col-md-6:nth-child(3) { animation-delay: 0.3s; }
+.col-md-6:nth-child(4) { animation-delay: 0.4s; }
+.col-md-6:nth-child(5) { animation-delay: 0.5s; }
+.col-md-6:nth-child(6) { animation-delay: 0.6s; }
+.col-md-6:nth-child(7) { animation-delay: 0.7s; }
+.col-md-6:nth-child(8) { animation-delay: 0.8s; }
+
+/* === CUSTOM COLOR THEMES PER MOVIE === */
+/* Shawshank Redemption - Hope/Freedom (Blue/White) */
+.col-md-6:nth-child(1) .thumbnail:hover {
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(65, 105, 225, 0.6),
+        0 0 0 1px rgba(65, 105, 225, 0.8);
+}
+.col-md-6:nth-child(1) .thumbnail:hover::before {
+    background: linear-gradient(45deg, #4169e1, #87ceeb, #4682b4);
+}
+
+/* The Godfather - Power/Blood (Deep Red/Black) */
+.col-md-6:nth-child(2) .thumbnail:hover {
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(139, 0, 0, 0.8),
+        0 0 0 1px rgba(139, 0, 0, 1);
+}
+.col-md-6:nth-child(2) .thumbnail:hover::before {
+    background: linear-gradient(45deg, #8b0000, #dc143c, #000000);
+}
+
+/* The Godfather Part II - Legacy/Gold (Dark Gold/Burgundy) */
+.col-md-6:nth-child(3) .thumbnail:hover {
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(184, 134, 11, 0.7),
+        0 0 0 1px rgba(184, 134, 11, 0.9);
+}
+.col-md-6:nth-child(3) .thumbnail:hover::before {
+    background: linear-gradient(45deg, #b8860b, #8b4513, #2f1f0f);
+}
+
+/* The Dark Knight - Chaos/Justice (Dark Blue/Orange) */
+.col-md-6:nth-child(4) .thumbnail:hover {
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(10, 35, 66, 0.9),
+        0 0 100px rgba(255, 140, 0, 0.5),
+        0 0 0 1px rgba(255, 140, 0, 0.8);
+}
+.col-md-6:nth-child(4) .thumbnail:hover::before {
+    background: linear-gradient(45deg, #0a2342, #ff8c00, #1a1a1a);
+}
+
+/* Schindler's List - Tragedy/Hope (Black/White/Red) */
+.col-md-6:nth-child(5) .thumbnail:hover {
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(220, 20, 60, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+.col-md-6:nth-child(5) .thumbnail:hover::before {
+    background: linear-gradient(45deg, #ffffff, #dc143c, #000000);
+}
+
+/* Wolf of Wall Street - Excess/Money (Green/Gold) */
+.col-md-6:nth-child(6) .thumbnail:hover {
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(0, 128, 0, 0.7),
+        0 0 100px rgba(212, 175, 55, 0.6),
+        0 0 0 1px rgba(0, 128, 0, 0.9);
+}
+.col-md-6:nth-child(6) .thumbnail:hover::before {
+    background: linear-gradient(45deg, #008000, #d4af37, #228b22);
+}
+
+/* Forrest Gump - Americana/Nostalgia (Red/White/Blue) */
+.col-md-6:nth-child(7) .thumbnail:hover {
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(178, 34, 34, 0.6),
+        0 0 100px rgba(70, 130, 180, 0.5),
+        0 0 0 1px rgba(178, 34, 34, 0.8);
+}
+.col-md-6:nth-child(7) .thumbnail:hover::before {
+    background: linear-gradient(45deg, #b22222, #ffffff, #4682b4);
+}
+
+/* Inception - Dreams/Reality (Bronze/Teal/Purple) */
+.col-md-6:nth-child(8) .thumbnail:hover {
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(184, 134, 11, 0.7),
+        0 0 100px rgba(72, 209, 204, 0.5),
+        0 0 0 1px rgba(138, 43, 226, 0.7);
+}
+.col-md-6:nth-child(8) .thumbnail:hover::before {
+    background: linear-gradient(45deg, #b8860b, #48d1cc, #8a2be2);
+}
+
+@keyframes cardEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(100px) rotateX(-20deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+    }
+}
+
+/* === THUMBNAIL - THE MAIN POSTER CARD === */
+.thumbnail {
+    border: 0;
+    position: relative;
+    padding: 25px;
+    margin: 30px;
+    border-radius: 15px;
+    /* Dark translucent card with depth */
+    background: linear-gradient(145deg, rgba(20, 20, 35, 0.95), rgba(10, 10, 20, 0.98));
+    /* Multi-layer box shadow for 3D depth */
+    box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.8),
+        0 0 0 1px rgba(212, 175, 55, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.5);
+    /* Enable 3D transforms */
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    overflow: hidden;
+}
+
+/* Animated border glow */
+.thumbnail::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, 
+        var(--gold-accent), 
+        var(--deep-red), 
+        var(--dark-knight-blue), 
+        var(--inception-bronze));
+    background-size: 300% 300%;
+    border-radius: 15px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    animation: borderGradient 6s ease infinite;
+}
+
+@keyframes borderGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* Hover effect - 3D lift and glow */
+.thumbnail:hover {
+    /* Subtle 3D rotation on hover */
+    transform: translateY(-20px) rotateX(5deg) rotateY(2deg) scale(1.02);
+    box-shadow: 
+        0 30px 80px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(212, 175, 55, 0.4),
+        0 0 0 1px rgba(212, 175, 55, 0.6),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.thumbnail:hover::before {
+    opacity: 1;
+}
+
+/* Spotlight effect on card hover */
+.thumbnail::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+    pointer-events: none;
+}
+
+.thumbnail:hover::after {
+    opacity: 1;
+    animation: spotlightRotate 3s linear infinite;
+}
+
+@keyframes spotlightRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* === POSTER IMAGE - HOLOGRAPHIC EFFECT === */
 .thumbnail img {
     margin-top: 10px;
     margin-bottom: 30px;
-    padding: 5px;
-    border: 2px dashed black;
+    padding: 0;
+    /* Double border - outer gold, inner dark */
+    border: 3px solid var(--gold-accent);
+    box-shadow: 
+        inset 0 0 0 5px rgba(10, 10, 10, 0.9),
+        0 10px 30px rgba(0, 0, 0, 0.7),
+        0 0 40px rgba(212, 175, 55, 0.3);
     width: 100%;
     height: 750px;
     object-fit: cover;
+    border-radius: 8px;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    position: relative;
+    /* Make image slightly 3D */
+    transform: translateZ(20px);
 }
 
-/* This stylizes your "Poster X of Y" text */
+/* Holographic shimmer overlay on image */
+.thumbnail img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(212, 175, 55, 0.3) 50%, 
+        transparent 100%);
+    transition: left 0.7s ease;
+}
+
+.thumbnail:hover img {
+    /* Slight scale and glow on hover */
+    transform: translateZ(30px) scale(1.02);
+    box-shadow: 
+        inset 0 0 0 5px rgba(10, 10, 10, 0.9),
+        0 15px 50px rgba(0, 0, 0, 0.9),
+        0 0 60px rgba(212, 175, 55, 0.6),
+        0 0 100px rgba(212, 175, 55, 0.3);
+    border-color: rgba(212, 175, 55, 1);
+}
+
+/* Click ripple effect */
+.thumbnail img:active {
+    transform: translateZ(25px) scale(0.98);
+}
+
+/* === IMAGE INFO TEXT === */
 .imageInfo {
-	color: #959595;
-	font-style: italic;
-	font-size: x-small;
-	float: right;
-	padding-right: 5px;
+    color: var(--gold-accent);
+    font-style: italic;
+    font-size: 0.75rem;
+    float: right;
+    padding-right: 5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
 }
 
-/* This stylizes your Title and Rating Text */
-.title,
-.released {
-    color: #444;
-    margin: 0;
-    font-size: 18px;
-    font-weight: 800;
+.thumbnail:hover .imageInfo {
+    opacity: 1;
 }
+
+/* === TITLE AND TEXT STYLING === */
+.title {
+    color: #ffffff;
+    margin: 15px 0 10px 0;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.9),
+        0 0 20px rgba(212, 175, 55, 0.4);
+    transition: all 0.4s ease;
+    font-family: 'Impact', 'Arial Black', sans-serif;
+}
+
+.thumbnail:hover .title {
+    color: var(--gold-accent);
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.9),
+        0 0 30px rgba(212, 175, 55, 0.8),
+        0 0 50px rgba(212, 175, 55, 0.4);
+    transform: translateX(5px);
+}
+
 .released,
-.rated {
-    color: #5d5d5d;
-    font-size: 14px;
-    font-weight: 200;
+.runtime,
+.websites {
+    color: #c0c0c0;
+    margin: 8px 0;
+    font-size: 1rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    transition: color 0.3s ease;
+    letter-spacing: 0.5px;
 }
 
-/* This shapes your IMDB score area */
+.thumbnail:hover .released,
+.thumbnail:hover .runtime,
+.thumbnail:hover .websites {
+    color: #ffffff;
+}
+
+.websites a {
+    color: var(--gold-accent);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.websites a:hover {
+    color: #ffffff;
+    background: rgba(212, 175, 55, 0.2);
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+}
+
+/* === IMDB SCORE CIRCLE - Academy Award Style === */
 .score {
-    background-color: #39D1B4;
-    color: #fff;
-    font-size: 18px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    font-weight: 200;
-    height: 80px;
-    line-height: 80px;
+    background: linear-gradient(135deg, var(--gold-accent) 0%, var(--inception-bronze) 100%);
+    color: #000000;
+    font-size: 1.4rem;
+    font-weight: 900;
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(212, 175, 55, 0.6),
+        inset 0 2px 0 rgba(255, 255, 255, 0.4),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.4);
+    height: 90px;
+    line-height: 90px;
     text-align: center;
-    width: 80px;
+    width: 90px;
     border-radius: 50%;
     position: absolute;
     top: 50px;
-    right: 25px;
+    right: 35px;
+    /* 3D transform */
+    transform: translateZ(40px);
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    /* Star icon glow */
+    animation: scoreGlowPulse 4s ease-in-out infinite;
 }
 
-/* This contains your like and dislike buttons */
+@keyframes scoreGlowPulse {
+    0%, 100% {
+        box-shadow: 
+            0 8px 25px rgba(0, 0, 0, 0.8),
+            0 0 40px rgba(212, 175, 55, 0.6),
+            inset 0 2px 0 rgba(255, 255, 255, 0.4),
+            inset 0 -2px 0 rgba(0, 0, 0, 0.4);
+    }
+    50% {
+        box-shadow: 
+            0 8px 25px rgba(0, 0, 0, 0.8),
+            0 0 60px rgba(212, 175, 55, 0.9),
+            0 0 80px rgba(212, 175, 55, 0.6),
+            inset 0 2px 0 rgba(255, 255, 255, 0.4),
+            inset 0 -2px 0 rgba(0, 0, 0, 0.4);
+    }
+}
+
+.thumbnail:hover .score {
+    transform: translateZ(50px) scale(1.1) rotate(360deg);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.9),
+        0 0 80px rgba(212, 175, 55, 1),
+        0 0 120px rgba(212, 175, 55, 0.6),
+        inset 0 2px 0 rgba(255, 255, 255, 0.6);
+}
+
+.score i {
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+}
+
+/* === SOCIAL BUTTONS CONTAINER === */
 .social {
     text-align: right;
     -webkit-user-select: none;
@@ -92,53 +571,274 @@ body {
     position: relative;
     left: -40px;
     top: -20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
 }
 
-/* This shapes your like and dislike buttons */
+/* === LIKE AND DISLIKE BUTTONS - Cinematic Style === */
 .likes,
 .dislikes {
     cursor: pointer;
-    display: inline-block;
-    font-size: 15px;
-    line-height: 40px;
-    min-width: 70px;
-    height: 40px;
-    border-radius: 50%;
-    margin: 0 -30px 0 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 50px;
+    min-width: 90px;
+    height: 50px;
+    border-radius: 25px;
+    margin: 0;
     text-align: center;
-    font-weight: 200;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    transition: 500ms;
+    /* Smooth Hollywood transition */
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-/* This makes sure your Github Button is centered */
-.footer {
-    text-align: center;
-    margin: 80px 0 110px;
+/* Animated background gradient */
+.likes::before,
+.dislikes::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
 }
 
-/* This makes sure your Github Button text is small */
-#github{
-	font-size: small;
+.likes:hover::before,
+.dislikes:hover::before {
+    left: 100%;
 }
 
-/* ADD YOUR LIKE AND DISLIKE HOVER/MOUSEOVER CSS CODE HERE */
+/* === LIKE BUTTON - Green/Success === */
 .likes {
-    background-color: green;
+    background: linear-gradient(135deg, #00a86b 0%, #008f5b 100%);
     color: white;
+    box-shadow: 
+        0 5px 15px rgba(0, 168, 107, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .likes:hover {
-    background-color: lightgreen;
-    color: green;
+    background: linear-gradient(135deg, #90ee90 0%, #7cdb7c 100%);
+    color: #00a86b;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 10px 30px rgba(0, 168, 107, 0.6),
+        0 0 40px rgba(144, 238, 144, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border-color: #00a86b;
 }
 
+.likes:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* === DISLIKE BUTTON - Red/Warning === */
 .dislikes {
-    background-color: red;
+    background: linear-gradient(135deg, #dc143c 0%, #b01030 100%);
     color: white;
+    box-shadow: 
+        0 5px 15px rgba(220, 20, 60, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .dislikes:hover {
-    background-color: lightcoral;
-    color: red;
+    background: linear-gradient(135deg, #f08080 0%, #e57373 100%);
+    color: #dc143c;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 
+        0 10px 30px rgba(220, 20, 60, 0.6),
+        0 0 40px rgba(240, 128, 128, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    border-color: #dc143c;
+}
+
+.dislikes:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+/* Icon animations */
+.likes i,
+.dislikes i {
+    transition: transform 0.3s ease;
+    margin-right: 5px;
+}
+
+.likes:hover i {
+    transform: scale(1.3) rotate(10deg);
+}
+
+.dislikes:hover i {
+    transform: scale(1.3) rotate(-10deg);
+}
+
+/* === FOOTER - Red Carpet Style === */
+.footer {
+    text-align: center;
+    margin: 80px 0 110px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Red carpet effect */
+.footer::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--deep-red) 20%, 
+        var(--deep-red) 80%, 
+        transparent 100%);
+    box-shadow: 0 0 20px rgba(139, 0, 0, 0.6);
+}
+
+/* === GITHUB BUTTON - VIP Pass Style === */
+#github {
+    font-size: 1.1rem;
+    padding: 15px 40px;
+    background: linear-gradient(135deg, var(--gold-accent) 0%, var(--inception-bronze) 100%);
+    border: 3px solid rgba(0, 0, 0, 0.3);
+    color: #000000;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(212, 175, 55, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.3),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    overflow: hidden;
+}
+
+/* VIP pass shine effect */
+#github::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        transparent 30%, 
+        rgba(255, 255, 255, 0.3) 50%, 
+        transparent 70%);
+    transform: rotate(45deg);
+    animation: vipShine 3s ease-in-out infinite;
+}
+
+@keyframes vipShine {
+    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+#github:hover {
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.7),
+        0 0 80px rgba(212, 175, 55, 0.8),
+        0 0 120px rgba(212, 175, 55, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.5);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#github:active {
+    transform: translateY(-5px) scale(1.05);
+}
+
+#github i {
+    transition: transform 0.3s ease;
+}
+
+#github:hover i {
+    transform: rotate(360deg) scale(1.2);
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+        letter-spacing: 4px;
+    }
+    
+    .thumbnail {
+        margin: 20px 10px;
+        padding: 15px;
+    }
+    
+    .thumbnail img {
+        height: 500px;
+    }
+    
+    .score {
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        font-size: 1.2rem;
+        right: 20px;
+        top: 30px;
+    }
+    
+    .title {
+        font-size: 1.4rem;
+    }
+    
+    .likes,
+    .dislikes {
+        min-width: 70px;
+        height: 45px;
+        line-height: 45px;
+        font-size: 0.9rem;
+    }
+    
+    .social {
+        left: 0;
+        justify-content: center;
+    }
+    
+    #github {
+        font-size: 0.9rem;
+        padding: 12px 30px;
+    }
+}
+
+/* === ACCESSIBILITY === */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* === PRINT STYLES === */
+@media print {
+    body::before,
+    body::after,
+    .thumbnail::before,
+    .thumbnail::after {
+        display: none;
+    }
+    
+    .thumbnail {
+        page-break-inside: avoid;
+    }
 }
