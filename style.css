@@ -1,8 +1,4 @@
-/* ============================================
-   PROFESSIONAL MOVIE GALLERY - OPTIMIZED CSS
-   Modern, Fast, Responsive Design
-   Bootstrap 5 + Custom Enhancements
-   ============================================ */
+
 
 /* === ROOT VARIABLES - Easy Theme Customization === */
 :root {
@@ -28,10 +24,10 @@
     
     /* Timing */
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* === PERFORMANCE-OPTIMIZED BASE === */
+
 * {
     /* GPU Acceleration for Transforms */
     transform: translateZ(0);
