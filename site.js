@@ -42,7 +42,7 @@ const vue_app = Vue.createApp({
                   return hours + "h " + mins + "m";
             },
             
-            // 3D PARALLAX TILT EFFECT - EXTRA SUBTLE VERSION
+            // 3D PARALLAX TILT EFFECT
             init3DParallax() {
                   // Wait a bit for Vue to render the cards
                   setTimeout(() => {
