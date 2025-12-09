@@ -22,18 +22,15 @@
 	<div id="vue_app" class="container">
 
 	    <div class="header">
-
 	      <div class="container">
 	        <h1 id="app_title">{{ title }}</h1>
 	      </div>
-
 	    </div>
 
 	    <div class="main">
-
 	      <div class="row">
 
-	        <div class="col-md-6" v-for="(movie, index) in movies" :key="index">
+	        <div class="col-lg-4 col-md-6" v-for="(movie, index) in movies" :key="index">
 	            <div class="thumbnail">
 
 						<img class="poster img-fluid" :src="movie.posters[movie.posterindex]" @click="posterClick(index)" />
@@ -66,7 +63,6 @@
 
   	<!-- This load the Vue.js code -->
 	<script type="text/javascript" src="site.js"></script>
-
 
 </body>
 </html>
